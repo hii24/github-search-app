@@ -10,10 +10,10 @@ const HistoryList: React.FC = () => {
 
     return (
         <View>
-            <CustomText color="light" size='large' >Search history:</CustomText>
+            <CustomText color="light" size='large'>Search history:</CustomText>
             <BlankBox />
             {history.map((request, index) => (
-                <CustomText color="light" key={index} >
+                <CustomText color="light" key={index}>
                     {request}
                 </CustomText>
             ))}
@@ -21,6 +21,4 @@ const HistoryList: React.FC = () => {
     );
 };
 
-
-
-export default HistoryList;
+export default React.memo(HistoryList);

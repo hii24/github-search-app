@@ -1,6 +1,7 @@
-// App.tsx
-import React from 'react';
-import { ScrollView, Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { Image } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+
 import SearchBar from './components/SearchBar';
 import ResultsList from './components/ResultsList';
 import HistoryList from './components/HistoryList';
@@ -12,6 +13,10 @@ import { Line } from './styles/Line';
 import { BlankBox } from './styles/BlankBox';
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <PersistGate loading={null} persistor={persistor}>
       <Container>
@@ -21,14 +26,10 @@ const App = () => {
         <SearchBar />
         <HistoryList />
         <BlankBox />
-        <ScrollView >
-          <ResultsList />
-        </ScrollView>
+        <ResultsList />
       </Container>
     </PersistGate>
   );
 };
 
-
-
-export default App;
+export default React.memo(App);

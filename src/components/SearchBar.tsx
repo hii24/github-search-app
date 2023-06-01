@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { searchGithub } from '../redux/slices/searchSlice';
@@ -11,14 +11,14 @@ const SearchBar: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const dispatch: AppDispatch = useDispatch();
 
-    const handleInputChange = (text: string) => {
+    const handleInputChange = useCallback((text: string) => {
         setSearchTerm(text);
-    };
+    }, []);
 
-    const debouncedHandleSearch = debounce(() => {
+    const debouncedHandleSearch = useCallback(debounce(() => {
         dispatch(searchGithub(searchTerm));
         dispatch(addRequest(searchTerm));
-    }, 500);
+    }, 500), [searchTerm, dispatch]);
 
     useEffect(() => {
         if (searchTerm) {
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SearchBar;
+export default React.memo(SearchBar);
