@@ -5,6 +5,7 @@ import { searchGithub } from '../redux/slices/searchSlice';
 import { addRequest } from '../redux/slices/historySlice';
 import { AppDispatch } from '../redux/store';
 import { debounce } from 'lodash';
+import { SearchInput } from '../styles/SearchInput';
 
 const SearchBar: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -30,7 +31,7 @@ const SearchBar: React.FC = () => {
 
     return (
         <View>
-            <TextInput
+            <SearchInput
                 style={styles.input}
                 value={searchTerm}
                 onChangeText={handleInputChange}

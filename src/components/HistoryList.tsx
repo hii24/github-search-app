@@ -1,26 +1,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { RootState } from '../redux/store';
+import { CustomText } from '../styles/CustomText';
+import { BlankBox } from '../styles/BlankBox';
 
 const HistoryList: React.FC = () => {
     const history = useSelector((state: RootState) => state.history.requests);
 
     return (
         <View>
+            <CustomText color="light" size='large' >Search history:</CustomText>
+            <BlankBox />
             {history.map((request, index) => (
-                <Text key={index} style={styles.request}>
+                <CustomText color="light" key={index} >
                     {request}
-                </Text>
+                </CustomText>
             ))}
         </View>
     );
 };
 
-const styles = StyleSheet.create({
-    request: {
-        fontSize: 18,
-    },
-});
+
 
 export default HistoryList;
